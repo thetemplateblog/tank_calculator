@@ -63,6 +63,18 @@ function round(Value, Places) {
   return (Math.round(Value * Math.pow(10,Places)) / Math.pow(10,Places));
 }
 
+function convertPhosphorus() {
+  var phosphorusValue = document.getElementById('phosphorus_input').value;
+  var phosphateResult = document.getElementById('phosphate_result');
+  
+  if (phosphorusValue && !isNaN(phosphorusValue) && phosphorusValue >= 0) {
+    var phosphateValue = (phosphorusValue * 3.066) / 1000;
+    phosphateResult.value = round(phosphateValue, 4) + ' ppm';
+  } else {
+    phosphateResult.value = '';
+  }
+}
+
 function GetSelectValue(TheSelect) {
   var the_index = TheSelect.selectedIndex;
   return TheSelect.options[the_index].value;

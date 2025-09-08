@@ -23,9 +23,6 @@
         <div id="content">
             <h1 class="heading1">Dosing Calculator</h1>
             
-            <div class="content-section">
-                <p>This calculator helps you make a fertiliser solution that is used to dose your tank by calculating the ppm (mg/l) value for a given amount of solution added.</p>
-            </div>
             
             <div class="calculator-form">
                 <form name="inputform">
@@ -78,12 +75,34 @@
                         <input type="button" value="Calculate" name="btn_calculate" onclick="calc_dosage()">
                     </div>
                     
-                    <div class="result-display">
-                        <p><strong>Each <input type="text" name="amount_soln" onchange="calc_dosage()" value="10"> ml of solution that is added to your tank will add:</strong></p>
-                        <input type="text" name="mixppm" class="result-input" onchange="calc_dosage()">
+                    <div class="form-group">
+                        <label>Result:</label>
+                        <div class="result-line">
+                            Each <input type="text" name="amount_soln" onchange="calc_dosage()" value="10" style="width: 60px;"> ml of solution adds: 
+                            <input type="text" name="mixppm" class="result-input" onchange="calc_dosage()" style="width: 200px;">
+                        </div>
                     </div>
                 </form>
             </div>
+            <div class="content-section">
+                <h2 class="heading3">Phosphorus to Phosphate Converter</h2>
+                <p>If you're using a Hanna Instruments phosphorus checker (measures in ppb), use this converter to find the equivalent phosphate value (in ppm) for dosing calculations:</p>
+                
+                <div class="converter-form">
+                    <div class="converter-group">
+                        <label>Enter ppb value:</label>
+                        <div class="result-line">
+                            <input type="text" id="phosphorus_input" onchange="convertPhosphorus()" style="width: 120px;"> ppb Phosphorus = 
+                            <input type="text" id="phosphate_result" readonly class="result-input" style="width: 120px;">
+                        </div>
+                    </div>
+                </div>
+                
+                <p class="formula-note"><em>Conversion formula: Phosphate (ppm) = Phosphorus (ppb) × 3.066 ÷ 1000</em></p>
+                <p class="note">This conversion is specifically calibrated for the Hanna Instruments HI736 Ultra Low Range Phosphorus Checker.</p>
+                <p class="note"><strong>Reference:</strong> <a href="docs/phosphorus-to-phosphate-conversion-table--hanna-instruments.pdf" target="_blank">Hanna Instruments Phosphorus to Phosphate Conversion Table (PDF)</a></p>
+            </div>
+            
             <div class="content-section">
                 <h2 class="heading3">How To Use</h2>
                 <div class="instructions">

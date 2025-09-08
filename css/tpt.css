@@ -35,7 +35,7 @@ body {
 }
 
 #container {
-  max-width: 800px;
+  max-width: 1000px;
   width: 100%;
   background-color: var(--secondary-bg);
   box-shadow: var(--shadow);
@@ -143,6 +143,20 @@ input[type="button"]:active {
   color: white !important;
   font-weight: 600;
   text-align: center;
+  border: 2px solid var(--success-color) !important;
+  box-shadow: 0 2px 4px rgba(40, 167, 69, 0.3) !important;
+}
+
+.result-line {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.result-line input {
+  margin: 0 !important;
 }
 
 /* Content Sections */
@@ -152,6 +166,57 @@ input[type="button"]:active {
   padding: var(--spacing-lg);
   margin-bottom: var(--spacing-xl);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Converter Form Styling */
+.converter-form {
+  background-color: var(--secondary-bg);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-lg);
+  margin: var(--spacing-md) 0;
+  border: 1px solid var(--border-color);
+}
+
+.converter-group {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: var(--spacing-md);
+  align-items: center;
+  margin-bottom: var(--spacing-md);
+}
+
+.converter-group:last-child {
+  margin-bottom: 0;
+}
+
+.converter-group label {
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.formula-note {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin: var(--spacing-md) 0 var(--spacing-sm) 0;
+  text-align: center;
+}
+
+.note {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin: var(--spacing-sm) 0 0 0;
+  font-style: italic;
+}
+
+.note a {
+  color: var(--accent-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.note a:hover {
+  color: var(--text-primary);
+  text-decoration: underline;
 }
 
 .reference-table {
@@ -222,6 +287,11 @@ input[type="button"]:active {
   
   .calculator-form {
     padding: var(--spacing-lg);
+  }
+  
+  .converter-group {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-sm);
   }
 }
 
