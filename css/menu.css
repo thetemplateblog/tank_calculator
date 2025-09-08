@@ -1,0 +1,41 @@
+#menuwrapper {
+  background-color: #444444;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
+}
+
+#menubar {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+#menubar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+#menubar li {
+  float: left;
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+
+#menubar a {
+  display: block;
+  text-decoration: none;
+  padding: 5px 10px;
+  color: #FFFFFF;
+  background-color: #444444;
+}
+
+#menubar a:hover {
+  background-color: #666666;
+}
+
+.clearit {
+  clear: both;
+}

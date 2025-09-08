@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Plant Tank Calculator (Local Copy)</title>
+    <meta charset="UTF-8">
+    <script src="scripts/calculator.js"></script>
+    <script src="scripts/menu.js"></script>
+    <script src="scripts/antispam.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/menu.css">
+    <link rel="stylesheet" type="text/css" href="css/tpt.css">
+    <script type="text/JavaScript">
+    function p7runIt() {
+        // run javascripts at startup
+        ExpMenu();
+        CalcFormInit();
+    }
+    onload=p7runIt;
+    </script>
+    <style>
+    .center { text-align: center; }
+    .left { text-align: left; }
+    .right { text-align: right; }
+    .justify { text-align: justify; }
+    .border { border-width: 0px; }
+    .style3 { background-color: #565656; }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="content">
+            <p class="center"><span class="heading1">Dosing Calculator</span></p>
+            
+            <table align="center" style="width: 96%">
+                <tbody>
+                    <tr>
+                        <td>This calculator helps you make a fertiliser solution that is
+                        used to dose your tank by calculating the ppm (mg/l) value for a
+                        given amount of solution added.</td>
+                    </tr>
+                </tbody>
+            </table>
+            <br><br>
+            <table align="center" style="width: 96%" class="style3">
+                <tbody>
+                    <tr>
+                        <td>
+                        <form name="inputform">
+                            <table cellpadding="5" style="width: 100%">
+                                <tbody>
+                                    <tr>
+                                        <td style="width: 240px">Tank Volume:</td>
+                                        <td>
+                                            <input type="text" name="tanksize" size="5" onchange="calc_dosage()" style="width: 50px">
+                                            <label for="TankSizeUnits">&nbsp;
+                                            <input type="radio" name="TankSizeUnits" value="Litres" onclick="calc_dosage()">Litres&nbsp;
+                                            <input type="radio" name="TankSizeUnits" value="UKGallons" onclick="calc_dosage()">UK Gallons&nbsp;
+                                            <input type="radio" name="TankSizeUnits" value="USGallons" onclick="calc_dosage()">US Gallons</label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 240px">&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 240px">Nutrient:</td>
+                                        <td>
+                                            <select name="chemnum" onchange="calc_dosage()">
+                                                <option value="1">Nitrate - from Potassium Nitrate</option>
+                                                <option value="3">Phosphate - from Potassium Phosphate</option>
+                                                <option value="0">Potassium - from Potassium Nitrate</option>
+                                                <option value="2">Potassium - from Potassium Phosphate</option>
+                                                <option value="4">Potassium - from Potassium Sulphate</option>
+                                                <option value="6">Magnesium - from Magnesium Sulphate heptahydrate</option>
+                                                <option value="8">Calcium - from Calcium Sulphate dihydrate</option>
+                                                <option value="13">Calcium - from Calcium Chloride anhydrous</option>
+                                                <option value="15">Calcium - from Calcium Chloride dihydrate</option>
+                                                <option value="10">Ammonium - from Ammonium Nitrate</option>
+                                                <option value="11">Nitrate - from Ammonium Nitrate</option>
+                                                <option value="12">Urea</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 240px">Amount to add:</td>
+                                        <td>
+                                            <input type="text" name="amount_chem" size="5" onchange="calc_dosage()" style="width: 50px">
+                                            <label for="NutrientUnits">&nbsp;
+                                            <input type="radio" name="NutrientUnits" value="UnitsGrams" onclick="calc_dosage()">Grams&nbsp;
+                                            <input type="radio" name="NutrientUnits" value="UnitsTeaspoons" onclick="calc_dosage()">Teaspoons&nbsp;
+                                            <input type="radio" name="NutrientUnits" value="UnitsTablespoons" onclick="calc_dosage()">Tablespoons</label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 240px">Amount of water to mix with:</td>
+                                        <td><input type="text" name="amount_H2O" onchange="calc_dosage()" style="width: 50px"> ml</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <br><br><br>
+                            <table cellpadding="5" align="center" style="width: 100%">
+                                <tbody>
+                                    <tr>
+                                        <td class="center">
+                                            <input type="button" value="Calculate" name="btn_calculate" onclick="calc_dosage()">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="center">
+                                            <strong>Each <input type="text" name="amount_soln" onchange="calc_dosage()" style="width: 50px"> ml of solution that is added to your tank will add:</strong>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="center">
+                                            <input type="text" name="mixppm" onchange="calc_dosage()">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <br>
+            <table align="center" style="width: 96%">
+                <tbody>
+                    <tr>
+                        <td><span class="heading3">How To Use</span></td>
+                    </tr>
+                    <tr><td>&nbsp;</td></tr>
+                    <tr>
+                        <td><strong>1.</strong> Enter your tank volume and select either Litres, UK Gallons or US Gallons.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>2.</strong> Select the nutrient you wish to use and from the chemical it is obtained.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>3.</strong> Enter the amount of the chemical that is to be added to the solution and also if you are using Grams, Teaspoons or Tablespoons. This may require a bit of trial and error to achieve the desired ppm figure. Remember that only so much of a chemical can be added to a given amount of water.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>4.</strong> Enter the amount of water that is going to be used for the fertiliser solution.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>5.</strong> Enter how much solution you wish to add to the tank in each dose. Some people like to add small amounts at a time like 2ml whilst others like to add large amounts like 50ml. The choice is yours.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>6.</strong> Click the 'Calculate' button to display the ppm value. This is the amount that the selected nutrient will raise your tank level by.</td>
+                    </tr>
+                    <tr><td>&nbsp;</td></tr>
+                    <tr>
+                        <td><em>nb. The calculator can also be used if you dose dry chemicals by putting a value of 1 in both the 'Amount of water to mix with' and 'Each ml of solution..' fields.</em></td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <br>
+            <table align="center" style="width: 96%">
+                <tbody>
+                    <tr>
+                        <td><span class="heading3">What ppm Values Do I Need</span></td>
+                    </tr>
+                    <tr><td>&nbsp;</td></tr>
+                    <tr>
+                        <td>What amount of nutrient you wish to add depends on your dosing schedule but if dosing Estimative Index then here is a general guide:</td>
+                    </tr>
+                    <tr>
+                        <td>8ppm of Nitrate which is added 3x a week</td>
+                    </tr>
+                    <tr>
+                        <td>2ppm of Phosphate which is added 3x a week</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <br>
+            <table align="center" style="width: 96%">
+                <tbody>
+                    <tr>
+                        <td><span class="heading3">Teaspoon quantities</span></td>
+                    </tr>
+                    <tr><td>&nbsp;</td></tr>
+                    <tr>
+                        <td>
+                            Weights used for each chemical using one teaspoon (5ml):
+                            <table align="center" style="width: 80%">
+                                <tbody>
+                                    <tr>
+                                        <td style="width: 280px">Potassium Nitrate</td>
+                                        <td>6.0g</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Potassium Phosphate</td>
+                                        <td>6.6g</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Potassium Sulphate</td>
+                                        <td>5.1g</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Magnesium Sulphate heptahydrate</td>
+                                        <td>5.1g</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Calcium Sulphate dihydrate</td>
+                                        <td>4.1g</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Calcium Chloride anhydrous</td>
+                                        <td>3.5g</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <br>
+            <table align="center" style="width: 96%">
+                <tbody>
+                    <tr>
+                        <td><span class="heading3">Solubility's In Water</span></td>
+                    </tr>
+                    <tr><td>&nbsp;</td></tr>
+                    <tr>
+                        <td>
+                            Maximum solubility's of the various chemicals:
+                            <table align="center" style="width: 80%">
+                                <tbody>
+                                    <tr>
+                                        <td style="width: 280px">Potassium Nitrate</td>
+                                        <td>36g per 100ml</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Potassium Phosphate</td>
+                                        <td>22g per 100ml</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Potassium Sulphate</td>
+                                        <td>11.1g per 100ml</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Magnesium Sulphate heptahydrate</td>
+                                        <td>25.5g per 100ml</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Calcium Sulphate dihydrate</td>
+                                        <td>0.24g per 100ml</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Calcium Chloride anhydrous</td>
+                                        <td>74g per 100ml</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

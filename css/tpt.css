@@ -1,0 +1,47 @@
+body {
+  background-color: #333333;
+  color: #FFFFFF;
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+#container {
+  width: 90%;
+  margin: 0 auto;
+  background-color: #444444;
+  padding: 10px;
+}
+
+#content {
+  padding: 10px;
+}
+
+.heading1 {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.heading3 {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+input, select {
+  background-color: #DDDDDD;
+  color: #000000;
+  padding: 3px;
+}
+
+.style3 {
+  background-color: #565656;
+  padding: 15px;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+td {
+  padding: 5px;
+}
