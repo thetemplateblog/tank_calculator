@@ -78,8 +78,13 @@
                     <div class="form-group">
                         <label>Result:</label>
                         <div class="result-line">
-                            Each <input type="text" name="amount_soln" onchange="calc_dosage()" value="10" style="width: 60px;"> ml of solution adds: 
-                            <input type="text" name="mixppm" class="result-input" onchange="calc_dosage()" style="width: 200px;">
+                            Each <input type="text" name="amount_soln" onchange="calc_dosage()" value="10" style="width: 60px;"> ml of solution adds:
+                        </div>
+                        <div class="result-line" style="margin-top: 5px;">
+                            <input type="text" name="mixppm" class="result-input" readonly style="width: 200px;">
+                        </div>
+                        <div class="result-line" id="nitrate_result_line" style="display: none; margin-top: 5px;">
+                            <input type="text" name="nitrate_ppm" class="result-input" readonly style="width: 200px;">
                         </div>
                     </div>
                 </form>

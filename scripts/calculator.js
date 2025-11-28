@@ -109,7 +109,19 @@ function calc_dosage() {
   var PPM_In_One_Liter = AmountOfNutrient * 1000;
   var AmountSolnAdded = document.inputform.amount_soln.value;
   var TotalPPM_InTank = PPM_In_One_Liter * AmountSolnAdded / TankSize;
-  document.inputform.mixppm.value = round(TotalPPM_InTank / document.inputform.amount_H2O.value,2) + ' ppm ' + GetNutrientName(ChemNum);
+  var calculatedPPM = round(TotalPPM_InTank / document.inputform.amount_H2O.value,2);
+
+  document.inputform.mixppm.value = calculatedPPM + ' ppm ' + GetNutrientName(ChemNum);
+
+  // If Ammonium from Ammonium Nitrate (ChemNum == 10), also calculate and display Nitrate
+  if (ChemNum == "10") {
+    var nitratePPM = round(calculatedPPM * 3.6, 2);
+    document.inputform.nitrate_ppm.value = nitratePPM + ' ppm Nitrate';
+    document.getElementById('nitrate_result_line').style.display = 'block';
+  } else {
+    document.inputform.nitrate_ppm.value = '';
+    document.getElementById('nitrate_result_line').style.display = 'none';
+  }
 
   // create an instance of the Date object
   var now = new Date();
