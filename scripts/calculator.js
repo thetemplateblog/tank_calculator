@@ -1,5 +1,5 @@
 function CalcFormInit() {
-    
+
   var SaveTankSize = getCookie("SaveTankSize");
   // if the cookie isn't found
   if (!SaveTankSize) {
@@ -13,7 +13,7 @@ function CalcFormInit() {
     document.inputform.amount_H2O.value = 1;
   }
   else document.inputform.amount_H2O.value = SaveAmountH2O;
- 
+
   var SaveAmountSoln = getCookie("SaveAmountSoln");
   // if the cookie isn't found
   if (!SaveAmountSoln) {
@@ -29,7 +29,7 @@ function CalcFormInit() {
   else {
     document.inputform.TankSizeUnits[SaveTankUnits].checked = 1;
   }
- 
+
   var SaveNutUnits= getCookie("SaveNutUnits");
   // if the cookie isn't found
   if (!SaveNutUnits) {
@@ -39,9 +39,38 @@ function CalcFormInit() {
     document.inputform.NutrientUnits[SaveNutUnits].checked = 1;
   }
 
+  var SaveNutUnits2 = getCookie("SaveNutUnits2");
+  if (SaveNutUnits2 != null) {
+    document.inputform.NutrientUnits2[SaveNutUnits2].checked = 1;
+  }
+
+  var SaveChemNum = getCookie("SaveChemNum");
+  if (SaveChemNum != null) {
+    document.inputform.chemnum.value = SaveChemNum;
+  }
+
+  var SaveChemNum2 = getCookie("SaveChemNum2");
+  if (SaveChemNum2 != null && SaveChemNum2 != "") {
+    document.inputform.chemnum2.value = SaveChemNum2;
+  }
+
+  var SaveAmountChem = getCookie("SaveAmountChem");
+  if (SaveAmountChem != null) {
+    document.inputform.amount_chem.value = SaveAmountChem;
+  }
+
+  var SaveAmountChem2 = getCookie("SaveAmountChem2");
+  if (SaveAmountChem2 != null) {
+    document.inputform.amount_chem2.value = SaveAmountChem2;
+  }
+
   document.inputform.mixppm.value ="";
-  document.inputform.amount_chem.value ="";
-  
+
+  // If we have saved values, recalculate to show results
+  if (SaveChemNum != null || SaveAmountChem != null) {
+    calc_dosage();
+  }
+
 }
   
 function GetNutrientName(ChemNum) {
@@ -154,13 +183,28 @@ function calc_dosage() {
   
   if (document.inputform.NutrientUnits[0].checked) {
     setCookie("SaveNutUnits", 0, now);
-  }  
+  }
   else if (document.inputform.NutrientUnits[1].checked) {
     setCookie("SaveNutUnits", 1, now);
   }
   else {
     setCookie("SaveNutUnits", 2, now);
   }
+
+  if (document.inputform.NutrientUnits2[0].checked) {
+    setCookie("SaveNutUnits2", 0, now);
+  }
+  else if (document.inputform.NutrientUnits2[1].checked) {
+    setCookie("SaveNutUnits2", 1, now);
+  }
+  else {
+    setCookie("SaveNutUnits2", 2, now);
+  }
+
+  setCookie("SaveChemNum", GetSelectValue(document.inputform.chemnum), now);
+  setCookie("SaveChemNum2", GetSelectValue(document.inputform.chemnum2), now);
+  setCookie("SaveAmountChem", document.inputform.amount_chem.value, now);
+  setCookie("SaveAmountChem2", document.inputform.amount_chem2.value, now);
 }
 
 /*
